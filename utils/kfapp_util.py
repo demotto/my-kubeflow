@@ -86,7 +86,7 @@ def scan_kfapp():
             addrs = set(addrs)
             for addr in addrs:
                 addr = addr.lstrip('image:').strip()
-                if "$(project)" not in addr and is_image_need_replaced(addr):
+                if "$(project)" not in addr and is_image_need_replaced(addr) and image_has_tag(addr):
                     images.append(addr)
     images = set(images)
     return images
@@ -95,6 +95,9 @@ def scan_kfapp():
 def conver_image_addr(addr):
     return image_prefix + addr.replace("/", ".").strip()
 
+
+def image_has_tag(addr):
+    return ":" in addr
 
 def install():
     kfapp_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/my-kfapp"
