@@ -62,6 +62,11 @@ def create_my_kfapp():
         print(file)
         replace_image(file)
 
+    app_file = my_kfapp_dir + "/app.yaml"
+    template = file_util.read_str_file(app_file)
+    content = template.replace("your_app_dir", my_kfapp_dir)
+    file_util.write_str_file(content, app_file)
+
 
 def scan_kfapp():
     images = []
@@ -99,13 +104,9 @@ def conver_image_addr(addr):
 def image_has_tag(addr):
     return ":" in addr
 
+
 def install():
     kfapp_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/my-kfapp"
-    app_file = kfapp_dir + "/app.yaml"
-    template = file_util.read_str_file(app_file)
-    content = template.replace("your_app_dir", kfapp_dir)
-
-    file_util.write_str_file(content, app_file)
     cmd = "cd {kfapp_dir}; kfctl apply all -V".format(kfapp_dir=kfapp_dir)
     (status, output) = commands.getstatusoutput(cmd)
     if status != 0:
