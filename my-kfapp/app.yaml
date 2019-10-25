@@ -5,7 +5,7 @@ metadata:
   name: kfapp
   namespace: kubeflow
 spec:
-  appdir: /root/my-kubeflow/my-kfapp
+  appdir: /Users/softfly/company/caocao/my-kubeflow/my-kfapp
   applications:
   - kustomizeConfig:
       parameters:
@@ -214,7 +214,7 @@ spec:
         path: seldon/seldon-core-operator
     name: seldon-core-operator
   enableApplications: true
-  manifestsRepo: /root/my-kubeflow/my-kfapp/.cache/manifests/manifests-56e2fb15db286198f7a53723cb1fbfecf3fe83fb
+  manifestsRepo: /Users/softfly/company/caocao/my-kubeflow/my-kfapp/.cache/manifests/manifests-56e2fb15db286198f7a53723cb1fbfecf3fe83fb
   packageManager: kustomize
   repos:
   - name: manifests
@@ -226,6 +226,6 @@ spec:
 status:
   reposCache:
     kubeflow:
-      localPath: '"/root/my-kubeflow/my-kfapp/.cache/kubeflow/kubeflow-0dbd2550372c003ba69069aeee283bd59fb1341f"'
+      localPath: '"/Users/softfly/company/caocao/my-kubeflow/my-kfapp/.cache/kubeflow/kubeflow-0dbd2550372c003ba69069aeee283bd59fb1341f"'
     manifests:
-      localPath: '"/root/my-kubeflow/my-kfapp/.cache/manifests/manifests-56e2fb15db286198f7a53723cb1fbfecf3fe83fb"'
+      localPath: '"/Users/softfly/company/caocao/my-kubeflow/my-kfapp/.cache/manifests/manifests-56e2fb15db286198f7a53723cb1fbfecf3fe83fb"'

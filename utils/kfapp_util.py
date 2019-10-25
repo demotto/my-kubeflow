@@ -20,7 +20,8 @@ replace_prefix = [
 
 username = env_conf.global_params['docker']['username']
 image_prefix = "{username}/mykubeflow.".format(username=username)
-
+nfs_server = env_conf.global_params['nfs']['server']
+nfs_path = env_conf.global_params['nfs']['path']
 
 def is_image_need_replaced(image):
     for p in replace_prefix:
@@ -114,17 +115,25 @@ def install():
     print(output)
 
 
-def build_pv():
-    kfapp_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/my-kfapp"
+def replace_pv():
+    kfapp_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/kfapp"
     files = file_util.list_dir_recur(kfapp_dir)
     for f in files:
-        if not f.endswith(".yaml"):
-            continue
-        docs = file_util.read_yaml_file(f)
-        for doc in docs:
-            if doc['kind'] == 'PersistentVolumeClaim':
-                print(doc)
+        if f.endswith("persistent-volume.yaml"):
+            docs = file_util.read_yaml_file(f)
+            for doc in docs:
+                spec = doc['spec']
+                spec.pop('gcePersistentDisk')
+                nfs_config = {
+                    "path": nfs_path + "/" + doc['metadata']['name'],
+                    "server": nfs_server
+                }
+                spec['nfs'] = nfs_config
+                doc['spec'] = spec
+                my_f = f.replace("/kfapp/", "/my-kfapp/")
+                file_util.write_yaml_file(doc, my_f)
+                break
 
 
 if __name__ == '__main__':
-    scan_kfapp()
+    replace_pv()

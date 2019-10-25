@@ -3,7 +3,7 @@
 import os
 import shutil
 from os import sys, path
-import yaml
+from ruamel import yaml
 
 
 def write_str_file(str, file):
@@ -13,7 +13,16 @@ def write_str_file(str, file):
 
 def write_yaml_file(obj, file):
     with open(file, 'w') as f:
-        f.write(yaml.dump(obj))
+        yaml.dump(obj, f, yaml.RoundTripDumper)
+
+
+# def write_multi_yaml_file(objs, file):
+#     sb = ""
+#     for obj in objs:
+#         "---\n"
+#         sb += yaml.dump(obj)
+#     with open(file, 'w') as f:
+#         f.write(sb)
 
 
 def read_str_file(file):

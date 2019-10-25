@@ -1,12 +1,12 @@
-apiVersion: v1
 kind: PersistentVolume
-metadata:
-  name: $(minioPvName)
 spec:
-  capacity:
-    storage: 20Gi
   accessModes:
   - ReadWriteOnce
-  gcePersistentDisk:
-    pdName: $(minioPd)
-    fsType: ext4
+  capacity:
+    storage: 20Gi
+  nfs:
+    path: /hallo/hi/$(minioPvName)
+    server: fucking
+apiVersion: v1
+metadata:
+  name: $(minioPvName)
