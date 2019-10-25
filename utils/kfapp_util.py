@@ -29,8 +29,8 @@ def replace_image(file):
         addrs = re.findall(pattern, content)
         addrs = set(addrs)
         for addr in addrs:
-            addr = addr.rstrip()
-            new_addr = "image: " + image_prefix + addr.replace("/", ".")
+            addr = addr.lstrip('image:').strip()
+            new_addr = image_prefix + addr.replace("/", ".")
             content = content.replace(addr, new_addr)
             if "$(project)" not in addr:
                 docker_util.image_pull_v2(addr)
@@ -40,7 +40,7 @@ def replace_image(file):
         addrs = re.findall(pattern, content)
         addrs = set(addrs)
         for addr in addrs:
-            addr = addr.rstrip()
+            addr = addr.strip()
             new_addr = image_prefix + addr.replace("/", ".")
             content = content.replace(addr, new_addr)
     file_util.write_str_file(content, file)
