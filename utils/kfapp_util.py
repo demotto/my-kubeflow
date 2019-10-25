@@ -114,5 +114,17 @@ def install():
     print(output)
 
 
+def build_pv():
+    kfapp_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/my-kfapp"
+    files = file_util.list_dir_recur(kfapp_dir)
+    for f in files:
+        if not f.endswith(".yaml"):
+            continue
+        docs = file_util.read_yaml_file(f)
+        for doc in docs:
+            if doc['kind'] == 'PersistentVolumeClaim':
+                print(doc)
+
+
 if __name__ == '__main__':
     scan_kfapp()
