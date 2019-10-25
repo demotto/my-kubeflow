@@ -31,9 +31,10 @@ def replace_image(file):
         for addr in addrs:
             new_addr = image_prefix + addr.replace("/", ".")
             content = content.replace(addr, new_addr)
-            docker_util.image_pull_v2(addr)
-            docker_util.image_tag_v2(addr, new_addr)
-            docker_util.image_push_v2(new_addr)
+            if "$(project)" not in addr:
+                docker_util.image_pull_v2(addr)
+                docker_util.image_tag_v2(addr, new_addr)
+                docker_util.image_push_v2(new_addr)
     file_util.write_str_file(content, file)
 
 
