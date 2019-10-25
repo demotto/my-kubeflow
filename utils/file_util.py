@@ -3,6 +3,7 @@
 import os
 import shutil
 from os import sys, path
+import yaml
 
 
 def write_str_file(str, file):
@@ -10,9 +11,20 @@ def write_str_file(str, file):
         f.write(str)
 
 
+def write_yaml_file(obj, file):
+    with open(file, 'w') as f:
+        f.write(yaml.dump(obj))
+
+
 def read_str_file(file):
     with open(file, 'r') as f:
         return f.read()
+
+
+def read_yaml_file(file):
+    with open(file, 'r') as f:
+        s = f.read()
+        return yaml.safe_load_all(s)
 
 
 def list_dir_recur(dir):
@@ -50,4 +62,9 @@ def mkdir(dir):
 
 
 if __name__ == '__main__':
-    mkdir("aa")
+    #d = read_yaml_file("D:/caocao/my-kubeflow/kfapp/kustomize/api-service/kustomization.yaml")
+    #print(d)
+    d = []
+    d.append({"from": "aaa", "to": "bbb"})
+    d.append({"from": "111", "to": "xxxx"})
+    write_yaml_file(d, "hallo.yaml")
