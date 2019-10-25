@@ -25,16 +25,24 @@ image_prefix = "{username}/mykubeflow.".format(username=username)
 def replace_image(file):
     content = file_util.read_str_file(file)
     for prefix in replace_prefix:
-        pattern = r"{prefix}.*".format(prefix=prefix)
+        pattern = r"image: {prefix}.*".format(prefix=prefix)
         addrs = re.findall(pattern, content)
         addrs = set(addrs)
         for addr in addrs:
-            new_addr = image_prefix + addr.replace("/", ".")
+            addr = addr.rstrip()
+            new_addr = "image: " + image_prefix + addr.replace("/", ".")
             content = content.replace(addr, new_addr)
             if "$(project)" not in addr:
                 docker_util.image_pull_v2(addr)
                 docker_util.image_tag_v2(addr, new_addr)
                 docker_util.image_push_v2(new_addr)
+        pattern = r"{prefix}.*".format(prefix=prefix)
+        addrs = re.findall(pattern, content)
+        addrs = set(addrs)
+        for addr in addrs:
+            addr = addr.rstrip()
+            new_addr = image_prefix + addr.replace("/", ".")
+            content = content.replace(addr, new_addr)
     file_util.write_str_file(content, file)
 
 
