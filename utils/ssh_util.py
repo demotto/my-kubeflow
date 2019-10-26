@@ -8,7 +8,7 @@ def ssh_exec(cmd, *hosts):
         print("run command {cmd} on {host}".format(host=host, cmd=cmd))
         (status, output) = commands.getstatusoutput(remote_cmd)
         if status != 0:
-            raise Exception("run command error")
+            raise Exception("run command error", output)
         print(output)
 
 
