@@ -109,7 +109,7 @@ echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
 echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
 swapoff -a
 
-yum -y install docker-ce-18.06.3.ce-3.el7.x86_64
+yum -y install docker-ce-18.06.3.ce
 systemctl enable docker
 systemctl start docker
 
