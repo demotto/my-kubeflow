@@ -97,7 +97,7 @@ gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
 EOF
 
 
-yum update --skip-broken
+yum update --skip-broken -y
 
 modprobe br_netfilter
 systemctl disable firewalld
