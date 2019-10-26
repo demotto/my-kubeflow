@@ -56,7 +56,7 @@ def add_worker(worker_name):
 
 def create_join_command():
     cmd_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/k8s"
-    cmd = cmd_dir + "/create_kubectl_join.sh"
+    cmd = "bash " + cmd_dir + "/create_kubectl_join.sh"
     (status, output) = commands.getstatusoutput(cmd)
     if status != 0:
         raise Exception(output)
