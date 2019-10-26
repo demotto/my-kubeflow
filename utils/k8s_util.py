@@ -50,8 +50,10 @@ def create_namespace(ns):
 def add_worker(worker_name):
     cmd_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/k8s"
     ssh_util.ssh_copy(cmd_dir, "/tmp", worker_name)
+    install_cmd = "bash /tmp/k8s/install_k8s_packages.sh"
+    ssh_util.ssh_exec(install_cmd, worker_name)
     join_cmd = create_join_command()
-    print(join_cmd)
+    ssh_util.ssh_exec(join_cmd, worker_name)
 
 
 def create_join_command():
