@@ -1,5 +1,8 @@
 import commands
+import os
+from os import sys, path
 
+import ssh_util
 
 def _check():
     """Check if kubectl works well; if not, raise Exception."""
@@ -44,11 +47,14 @@ def create_namespace(ns):
     return output
 
 
-def replace_images():
+def add_worker(worker_name):
+    cmd_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/k8s"
+    ssh_util.ssh_copy(cmd_dir, "/tmp", worker_name)
+
+
+def remove_worker(worker_name):
     pass
 
 
 if __name__ == '__main__':
-    _check()
-    content = get_deploy_yaml("workflow-controller", "kubeflow")
-    print(content)
+    add_worker("store05")
