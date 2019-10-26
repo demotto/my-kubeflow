@@ -8,8 +8,7 @@ global_params = {
         "path": "/hallo/hi"
     },
     "k8s": {
-        "nodes": [
-
+        "workers": [
         ]
     }
 }

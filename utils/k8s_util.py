@@ -44,6 +44,10 @@ def create_namespace(ns):
     return output
 
 
+def replace_images():
+    pass
+
+
 if __name__ == '__main__':
     _check()
     content = get_deploy_yaml("workflow-controller", "kubeflow")
