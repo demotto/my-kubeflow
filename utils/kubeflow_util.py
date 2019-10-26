@@ -12,7 +12,6 @@ import k8s_util
 import file_util
 
 
-
 def _check(ns):
     """Check if kubeflow is installed; if not, raise an exception."""
     cmd = "kubectl get ns {ns}".format(ns=ns)

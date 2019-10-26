@@ -50,6 +50,17 @@ def create_namespace(ns):
 def add_worker(worker_name):
     cmd_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/k8s"
     ssh_util.ssh_copy(cmd_dir, "/tmp", worker_name)
+    join_cmd = create_join_command()
+    print(join_cmd)
+
+
+def create_join_command():
+    cmd_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/k8s"
+    cmd = cmd_dir + "/create_kubectl_join.sh"
+    (status, output) = commands.getstatusoutput(cmd)
+    if status != 0:
+        raise Exception(output)
+    return output.strip()
 
 
 def remove_worker(worker_name):
