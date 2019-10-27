@@ -5,8 +5,8 @@ spec:
   capacity:
     storage: 20Gi
   nfs:
-    path: /hallo/hi/$(mysqlPvName)
-    server: fucking
+    path: /data1/k8s_nfs/$(mysqlPvName)
+    server: store03
 apiVersion: v1
 metadata:
   name: $(mysqlPvName)
