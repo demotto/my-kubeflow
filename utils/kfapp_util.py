@@ -109,9 +109,10 @@ def image_has_tag(addr):
 def install():
     kfapp_dir = path.dirname(path.dirname(path.abspath(__file__))) + "/my-kfapp"
     cmd = "cd {kfapp_dir}; kfctl apply all -V".format(kfapp_dir=kfapp_dir)
+    print(cmd)
     (status, output) = commands.getstatusoutput(cmd)
     if status != 0:
-        raise Exception("run command error")
+        raise Exception("run command error", output)
     print(output)
 
 
