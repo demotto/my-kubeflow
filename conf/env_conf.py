@@ -4,8 +4,8 @@ global_params = {
         "password": "Hyf954731007"
     },
     "nfs": {
-        "server": "fucking",
-        "path": "/hallo/hi"
+        "server": "store03",
+        "path": "/data1/k8s_nfs"
     },
     "k8s": {
         "workers": [
