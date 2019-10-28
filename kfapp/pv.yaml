@@ -45,8 +45,8 @@ spec:
   capacity:
     storage: 20Gi
   nfs:
-    path: /data1/k8s_nfs/mysql_pv
+    path: /data1/k8s_nfs/mysql-pv
     server: store03
 apiVersion: v1
 metadata:
-  name: mysql_pv
+  name: mysql-pv
