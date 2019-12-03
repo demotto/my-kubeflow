@@ -206,13 +206,13 @@ spec:
         name: manifests
         path: profiles
     name: profiles
-  - kustomizeConfig:
-      overlays:
-      - application
-      repoRef:
-        name: manifests
-        path: seldon/seldon-core-operator
-    name: seldon-core-operator
+#  - kustomizeConfig:
+#      overlays:
+#      - application
+#      repoRef:
+#        name: manifests
+#        path: seldon/seldon-core-operator
+#    name: seldon-core-operator
   enableApplications: true
   manifestsRepo: /Users/softfly/company/caocao/my-kubeflow/my-kfapp/.cache/manifests/manifests-56e2fb15db286198f7a53723cb1fbfecf3fe83fb
   packageManager: kustomize
